@@ -60,20 +60,21 @@
     function computeCircleGeometry() {
         var circle = new THREE.BufferGeometry();
         var angle;
-        var vertexA = new THREE.Vector3( 0.0, 0.0, 0.0 );
-        var vertexB = new THREE.Vector3( ctrl.R, 0.0, 0.0 );
+        var vertexA = new THREE.Vector3(0.0, 0.0, 0.0);
+        var vertexB = new THREE.Vector3(ctrl.R, 0.0, 0.0);
         var vertexC;
         var i;
-        const vertices = [];
-        const indices = [];
-        const normals = [];
-        for( angle = 2.0 * Math.PI / ctrl.N, i = 0; i < ctrl.N ; angle += 2.0 * Math.PI / ctrl.N, i++ ) {
-            vertexC = new THREE.Vector3( ctrl.R * Math.cos( angle ), ctrl.R * Math.sin( angle ), 0.0 );
-            vertices.push( vertexA.x, vertexA.y, vertexA.z );
-            vertices.push( vertexB.x, vertexB.y, vertexB.z );
-            vertices.push( vertexC.x, vertexC.y, vertexC.z );
+        let vertices = [];
+        let indices = [];
+        // noinspection JSUnusedLocalSymbols
+        let normals = [];
+        for (angle = 2.0 * Math.PI / ctrl.N, i = 0; i < ctrl.N; angle += 2.0 * Math.PI / ctrl.N, i++) {
+            vertexC = new THREE.Vector3(ctrl.R * Math.cos(angle), ctrl.R * Math.sin(angle), 0.0);
+            vertices.push(vertexA.x, vertexA.y, vertexA.z);
+            vertices.push(vertexB.x, vertexB.y, vertexB.z);
+            vertices.push(vertexC.x, vertexC.y, vertexC.z);
             //var face = new THREE.Face3( i * 3, i * 3 + 1, i * 3 + 2 );
-            indices.push( i * 3, i * 3 + 1, i * 3 + 2);
+            indices.push(i * 3, i * 3 + 1, i * 3 + 2);
 
             // Manual face normal
             //normals.push( 0.0, 0.0, 1.0 );

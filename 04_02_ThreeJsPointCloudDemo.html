@@ -64,19 +64,19 @@
         camera.position.z = cameraZ;
 
         // Ponthalmaz
-        const vertices = [];
-        let vx, vy, vz;
-        let particlesGeometry = new THREE.BufferGeometry();
         let particleCount = 20000;
-        for( i = 0; i < particleCount; i++ ) {
-            vx = Math.random() * 2000 - 1000;
-            vy = Math.random() * 2000 - 1000;
-            vz = Math.random() * 2000 - 1000;
-            vertices.push( vx, vy, vz );
+        let particlePositionAttributeSize = 3;
+
+        let particlesGeometry = new THREE.BufferGeometry();
+        let vertices = new Float32Array(particleCount * particlePositionAttributeSize);
+        for (let i = 0, idx = 0; i < particleCount; i++, idx += 3) {
+            vertices[idx] = Math.random() * 2000 - 1000;      // vx
+            vertices[idx + 1] = Math.random() * 2000 - 1000;  // vy
+            vertices[idx + 2] = Math.random() * 2000 - 1000;  // vz
         }
 
         // Attribútum beállítása
-        particlesGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
         parameters = [
             [
